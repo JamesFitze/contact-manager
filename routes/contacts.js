@@ -4,7 +4,6 @@ const Contact = require('../models/contact');
 
 /**
  * GET /contacts
- * Optional filter: ?lastname=Smith (case-insensitive)
  */
 router.get('/', async (req, res) => {
   try {
@@ -21,7 +20,6 @@ router.get('/', async (req, res) => {
 
 /**
  * POST /contacts
- * Body: contact JSON
  */
 router.post('/', async (req, res) => {
   try {
@@ -33,9 +31,9 @@ router.post('/', async (req, res) => {
   }
 });
 
+
 /**
- * PUT /contacts/:_id  (matches the assignment spec)
- * Body: partial/updated fields
+ * PUT /contacts/:_id
  */
 router.put('/:_id', async (req, res) => {
   try {
@@ -65,9 +63,7 @@ router.delete('/:_id', async (req, res) => {
   }
 });
 
-/**
- * (Optional) also accept :id for convenience, mapping to :_id under the hood.
- */
+// Support :id as alias for :_id
 router.put('/:id', async (req, res) => {
   req.params._id = req.params.id;
   delete req.params.id;
