@@ -2,7 +2,7 @@
 require('dotenv').config();
 
 const createError = require('http-errors');
-const express = require('express');           // <-- This was missing
+const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
@@ -23,13 +23,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-// (optional) static / views if you kept them from the generator
 app.use(express.static(path.join(__dirname, 'public')));
 
 // routes
 app.use('/contacts', contactsRouter);
 
-// catch 404
+// 404
 app.use(function (req, res, next) {
   next(createError(404));
 });
